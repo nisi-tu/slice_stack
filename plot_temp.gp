@@ -9,7 +9,7 @@ set ylabel "Emissivity (counts/CH/61.21ms)"
 f=51
 L=6
 
-set title sprintf("LHD#191486, EUV short2, t = %d s",f/10.0)
+set title "LHD#191486, EUV short2, t = 5.1s"
 
 plot [:][0:] \
 sprintf("emis_f%d.dat",f) u 1:2 w l t "CVI 26.990Å",\
@@ -54,3 +54,4 @@ reset
 # # set pm3d interpolate 4,4
 
 # splot sprintf("heatmap_f%d.dat",f) u 2:1:3 w pm3d notitle
+
