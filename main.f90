@@ -37,7 +37,17 @@ do i = 1, Nline
     call solver_lower_triangle_matrix( Nlos, L, sLI(i,:), emis(i,:) )
     call smoothing_signal( Nlos, 10, emis(i,:), semis(i,:) )
     emis(i,:) = semis(i,:)
+    calc_LI(i,:) = matmul( L,emis(i,:) )
 end do
+
+! y-axis calibration : counts/s -->> phs m-3 /s
+emis(1,:) = emis(1,:) * fcalib_short2( 26.990d0 )
+emis(2,:) = emis(2,:) * fcalib_short2( 28.465d0 )
+emis(3,:) = emis(3,:) * fcalib_short2( 33.737d0 )
+emis(4,:) = emis(4,:) * fcalib_short2( 32.41d0 )
+emis(5,:) = emis(5,:) * fcalib_short2( 30.88d0 )
+emis(6,:) = emis(6,:) * fcalib_short2( 29.55d0 )
+emis(:,:) = emis(:,:) / 61.21d-3    ! /61.21ms -->> /s
 
 call op_result( f )
 
@@ -48,10 +58,6 @@ implicit none
 integer, intent(in) :: frame
 integer :: i, j
 character(64) :: outf
-
-    do i = 1, Nline
-        calc_LI(i,:) = matmul( L,emis(i,:) )
-    end do
 
     write(outf, '("emis_f", I2, ".dat")') frame
 

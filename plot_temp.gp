@@ -4,7 +4,7 @@ set size ratio 1
 set nogrid
 set colorsequence classic
 set xlabel "r_{eff} (m)"
-set ylabel "Emissivity (counts/CH/61.21ms)"
+set ylabel "Emissivity (phs m^{-3}/s)"
 
 f=51
 L=6

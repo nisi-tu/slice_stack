@@ -2,7 +2,7 @@ all:
 	gfortran \
 	src/mod_math.f90 \
 	src/mod_tsmesh_h.f90 \
-	src/mod_long2.f90 \
+	src/mod_short2.f90 \
 	src/mod_length_matrix.f90 \
 	main.f90 -O2
 

@@ -56,5 +56,24 @@ integer :: i, dmy
 
 end subroutine rd_line_integ_intens
 ! ================================================== !
-
+real(8) function fcalib_short2(wavelen)
+! ref : X. Huang, SOKENDAI Doctoral thesis 2015.
+implicit none
+real(8), intent(in) :: wavelen
+real(8), parameter :: a0 = 0.087d0
+real(8), parameter :: a1 = 0.170d0
+real(8), parameter :: a2 = 0.113d0
+fcalib_short2 = ( a0 + a1*wavelen + a2*wavelen**2 ) * 1d8 * 1d4
+end function fcalib_short2
+! ================================================== !
+real(8) function fcalib_long2(wavelen)
+! ref : H. Zhang, JJAP 2015.
+implicit none
+real(8), parameter :: a0 = 44.13d0
+real(8), parameter :: a1 = -0.19d0
+real(8), parameter :: a2 = 0.0034d0
+real(8), intent(in) :: wavelen
+fcalib_long2 = (a0 + a1*wavelen + a2*wavelen**2) * 1d8 * 1d4
+end function fcalib_long2
+! ================================================== !
 end module mod_long2
